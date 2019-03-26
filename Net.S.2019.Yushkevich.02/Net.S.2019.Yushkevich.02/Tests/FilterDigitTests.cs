@@ -21,9 +21,8 @@ namespace Net.S._2019.Yushkevich._02.Tests
         [TestCaseSource(nameof(DataCases))]
         public void FilterDigitTest(List<int> actual,int digit ,List<int> expected)
         {
-            var result = Day2Methods.FilterDigit(actual,digit);
-
-            Assert.AreEqual(expected, result);
+            Day2Methods.FilterDigit(ref actual, digit);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

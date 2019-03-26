@@ -20,7 +20,7 @@ namespace Net.S._2019.Yushkevich._02.Tests
         [TestCase(0.004241979, 9, 0.00000001, ExpectedResult = 0.545)]
         public static double SqrtNTest(double n,double a,double eps)
         {
-            return Day2Methods.SqrtN(a, n, eps);
+            return Day2Methods.FindNthRoot(a, n, eps);
         }
     }
 }
