@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
+using System;
 
 namespace NET.S._2019.Yushkevich._01
 {
@@ -29,6 +30,26 @@ namespace NET.S._2019.Yushkevich._01
             actual.MergeSort(0, actual.Length - 1);
 
             Assert.AreEqual(expected, actual);
+        }
+        [Test]
+        public void NullArrayQsorTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => SortService.QSort(null, 0, 0));
+        }
+        [Test]
+        public void NullArrayMergeSortTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => SortService.MergeSort(null, 0, 0));
+        }
+        [Test]
+        public void EmptyArrayQsorTest()
+        {
+            Assert.Throws<ArgumentException>(() => SortService.QSort(new int[0], 0, 0));
+        }
+        [Test]
+        public void EmptyArrayMergeSortTest()
+        {
+            Assert.Throws<ArgumentException>(() => SortService.MergeSort(new int[0], 0, 0));
         }
     }
 }
