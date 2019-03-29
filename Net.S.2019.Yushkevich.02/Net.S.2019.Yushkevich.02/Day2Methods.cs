@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Net.S._2019.Yushkevich._02
@@ -98,6 +99,8 @@ namespace Net.S._2019.Yushkevich._02
 
         private static int ToInt(this char[] array)
         {
+            ArrayList ar = new ArrayList();
+            ar.Add(123);
             string temp = new string(array);
             return Convert.ToInt32(temp);
         }
