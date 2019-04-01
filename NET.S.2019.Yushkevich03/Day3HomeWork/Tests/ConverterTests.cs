@@ -17,7 +17,7 @@ namespace Day3HomeWork.Tests
         [TestCase(0.0, ExpectedResult = "0000000000000000000000000000000000000000000000000000000000000000")]
         public static string Test(double d)
         {
-            return NumberConverter.FloatToBinary(d);
+            return NumberConverter.DoubleToBinary(d);
         }
     }
 }
