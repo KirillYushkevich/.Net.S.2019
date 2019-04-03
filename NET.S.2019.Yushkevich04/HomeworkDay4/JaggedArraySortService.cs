@@ -9,236 +9,175 @@ namespace HomeworkDay4
     public class JaggedArraySortService
     {
         #region orderBy
-        // <summary>Order array of arrays by Sum of integer in arrays(More information in readme.txt).</summary>
-        /// <param name="array">array of arrays of numbers</param>
+        /// <summary>Order array of arrays by Sum of integer in arrays(More information in readme.txt).</summary>
+        /// <param name="arrayToSort">array of arrays of numbers</param>
         /// <returns>
         ///     Sorted Array
         /// </returns>
-        public static int[][] OrderBySum(int[][] array)
+        public static int[][] OrderBySum(int[][] arrayToSort)
         {
-            if (array == null)
+            if (arrayToSort == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (array.Length == 0)
+            if (arrayToSort.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            int[] temp = new int[array.Length];
-            for (int index = 0; index < array.Length; index++)
+            if(arrayToSort.Length==1)
             {
-                temp[index] = array[index].Sum();
+                return arrayToSort;
             }
 
-            for (int i = 0; i < array.Length; i++)
+            int[] arrayOfSums = new int[arrayToSort.Length];
+            for (int index = 0; index < arrayToSort.Length; index++)
             {
-                for (int j = i + 1; j < array.Length; j++)
-                {
-                    if (temp[i] > temp[j])
-                    {
-                        SwapNumbers(ref temp[i], ref temp[j]);
-                        SwapArrays(ref array[i], ref array[j]);
-                    }
-                }
+                arrayOfSums[index] = arrayToSort[index].Sum();
             }
 
-            return array;
+            BubbleSort(ref arrayOfSums, ref arrayToSort);
+            return arrayToSort;
         }
 
         /// <summary>Order array of arrays by Max integer in arrays(More information in readme.txt).</summary>
-        /// <param name="array">array of arrays of numbers</param>
+        /// <param name="arrayToSort">array of arrays of numbers</param>
         /// <returns>
         ///     Sorted Array
         /// </returns>      
-        public static int[][] OrderByMax(int[][] array)
+        public static int[][] OrderByMax(int[][] arrayToSort)
         {
-            if (array == null)
+            if (arrayToSort == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (array.Length == 0)
+            if (arrayToSort.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            int[] temp = new int[array.Length];
-            for (int index = 0; index < array.Length; index++)
+            int[] arrayOfMax = new int[arrayToSort.Length];
+            for (int index = 0; index < arrayToSort.Length; index++)
             {
-                temp[index] = array[index].Max();
+                arrayOfMax[index] = arrayToSort[index].Max();
             }
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                for (int j = i + 1; j < array.Length; j++)
-                {
-                    if (temp[i] > temp[j])
-                    {
-                        SwapNumbers(ref temp[i], ref temp[j]);
-                        SwapArrays(ref array[i], ref array[j]);
-                    }
-                }
-            }
-
-            return array;
+            BubbleSort(ref arrayOfMax, ref arrayToSort);
+            return arrayToSort;
         }
 
         /// <summary>Order array of arrays by Min integer in arrays(More information in readme.txt).</summary>
-        /// <param name="array">array of arrays of numbers</param>
+        /// <param name="arrayToSort">array of arrays of numbers</param>
         /// <returns>
         ///     Sorted Array
         /// </returns>
-        public static int[][] OrderByMin(int[][] array)
+        public static int[][] OrderByMin(int[][] arrayToSort)
         {
-            if (array == null)
+            if (arrayToSort == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (array.Length == 0)
+            if (arrayToSort.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            int[] temp = new int[array.Length];
-            for (int index = 0; index < array.Length; index++)
+            int[] arrayOfMin = new int[arrayToSort.Length];
+            for (int index = 0; index < arrayToSort.Length; index++)
             {
-                temp[index] = array[index].Min();
+                arrayOfMin[index] = arrayToSort[index].Min();
             }
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                for (int j = i + 1; j < array.Length; j++)
-                {
-                    if (temp[i] > temp[j])
-                    {
-                        SwapNumbers(ref temp[i], ref temp[j]);
-                        SwapArrays(ref array[i], ref array[j]);
-                    }
-                }
-            }
-
-            return array;
+            BubbleSort(ref arrayOfMin, ref arrayToSort);
+            return arrayToSort;
         }
         #endregion
         #region orderDescanding
-        // <summary>Order array of arrays by Max integer in arrays descanding(More information in readme.txt).</summary>
-        /// <param name="array">array of arrays of numbers</param>
+        /// <summary>Order array of arrays by Max integer in arrays descanding(More information in readme.txt).</summary>
+        /// <param name="arrayToSort">array of arrays of numbers</param>
         /// <returns>
         ///     Sorted Array
         /// </returns>
-        public static int[][] OrderByMaxDescending(int[][] array)
+        public static int[][] OrderByMaxDescending(int[][] arrayToSort)
         {
-            if (array == null)
+            if (arrayToSort == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (array.Length == 0)
+            if (arrayToSort.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            int[] temp = new int[array.Length];
-            for (int index = 0; index < array.Length; index++)
+            int[] arrayOfMax = new int[arrayToSort.Length];
+            for (int index = 0; index < arrayToSort.Length; index++)
             {
-                temp[index] = array[index].Max();
+                arrayOfMax[index] = arrayToSort[index].Max();
             }
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                for (int j = i + 1; j < array.Length; j++)
-                {
-                    if (temp[i] > temp[j])
-                    {
-                        SwapNumbers(ref temp[i], ref temp[j]);
-                        SwapArrays(ref array[i], ref array[j]);
-                    }
-                }
-            }
-
-            array = array.Reverse().ToArray();
-            return array;
+            BubbleSort(ref arrayOfMax, ref arrayToSort);
+            arrayToSort = arrayToSort.Reverse().ToArray();
+            return arrayToSort;
         }
 
         /// <summary>Order array of arrays by Sum of integer in arrays descanding(More information in readme.txt).</summary>
-        /// <param name="array">array of arrays of numbers</param>
+        /// <param name="arrayToSort">array of arrays of numbers</param>
         /// <returns>
         ///     Sorted Array
         /// </returns>
-        public static int[][] OrderBySumDescending(int[][] array)
+        public static int[][] OrderBySumDescending(int[][] arrayToSort)
         {
-            if (array == null)
+            if (arrayToSort == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (array.Length == 0)
+            if (arrayToSort.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            int[] temp = new int[array.Length];
-            for (int index = 0; index < array.Length; index++)
+            int[] arrayOfSums = new int[arrayToSort.Length];
+            for (int index = 0; index < arrayToSort.Length; index++)
             {
-                temp[index] = array[index].Sum();
+                arrayOfSums[index] = arrayToSort[index].Sum();
             }
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                for (int j = i + 1; j < array.Length; j++)
-                {
-                    if (temp[i] > temp[j])
-                    {
-                        SwapNumbers(ref temp[i], ref temp[j]);
-                        SwapArrays(ref array[i], ref array[j]);
-                    }
-                }
-            }
-
-            array = array.Reverse().ToArray();
-            return array;
+            BubbleSort(ref arrayOfSums, ref arrayToSort);
+            arrayToSort = arrayToSort.Reverse().ToArray();
+            return arrayToSort;
         }
 
         /// <summary>Order array of arrays by Min integer in arrays descanding(More information in readme.txt).</summary>
-        /// <param name="array">array of arrays of numbers</param>
+        /// <param name="arrayToSort">array of arrays of numbers</param>
         /// <returns>
         ///     Sorted Array
         /// </returns>
-        public static int[][] OrderByMinDescending(int[][] array)
+        public static int[][] OrderByMinDescending(int[][] arrayToSort)
         {
-            if (array == null)
+            if (arrayToSort == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (array.Length == 0)
+            if (arrayToSort.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            int[] temp = new int[array.Length];
-            for (int index = 0; index < array.Length; index++)
+            int[] arrayOfMin = new int[arrayToSort.Length];
+            for (int index = 0; index < arrayToSort.Length; index++)
             {
-                temp[index] = array[index].Min();
+                arrayOfMin[index] = arrayToSort[index].Min();
             }
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                for (int j = i + 1; j < array.Length; j++)
-                {
-                    if (temp[i] > temp[j])
-                    {
-                        SwapNumbers(ref temp[i], ref temp[j]);
-                        SwapArrays(ref array[i], ref array[j]);
-                    }
-                }
-            }
-
-            array = array.Reverse().ToArray();
-            return array;
+            BubbleSort(ref arrayOfMin, ref arrayToSort);
+            arrayToSort = arrayToSort.Reverse().ToArray();
+            return arrayToSort;
         }
         #endregion
 
@@ -260,6 +199,24 @@ namespace HomeworkDay4
             int[] temp = firstArg;
             firstArg = secondArg;
             secondArg = temp;
+        }
+
+        /// <summary>Sorts array using temp as arguments</summary>
+        /// <param name="argumentsArray">array with arguments</param>
+        /// <param name="arrayToSort">array to sort</param>
+        private static void BubbleSort(ref int[] argumentsArray, ref int[][] arrayToSort)
+        {
+            for (int i = 0; i < arrayToSort.Length; i++)
+            {
+                for (int j = i + 1; j < arrayToSort.Length; j++)
+                {
+                    if (argumentsArray[i] > argumentsArray[j])
+                    {
+                        SwapNumbers(ref argumentsArray[i], ref argumentsArray[j]);
+                        SwapArrays(ref arrayToSort[i], ref arrayToSort[j]);
+                    }
+                }
+            }
         }
     }
 }

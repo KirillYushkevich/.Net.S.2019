@@ -5,18 +5,13 @@ namespace Day3HomeWork
 {
     public static class NumberConverter
     {
-        // <summary>Converts double number to binary repreesentation(More information in readme.txt).</summary>
+        /// <summary>Converts double number to binary repreesentation(More information in readme.txt).</summary>
         /// <param name="number">value</param>
         /// <returns>
         ///     binary representation of number
         /// </returns>
         public static string DoubleToBinary(this double number)
         {
-            if(number>double.MaxValue || number<double.MinValue)
-            {
-                throw new ArgumentException();
-            }
-
             StringBuilder builder = new StringBuilder();
             byte[] byteArray = DoubleToBytes(number);
             foreach (byte b in byteArray)
@@ -29,7 +24,8 @@ namespace Day3HomeWork
 
             return builder.ToString();
         }
-        // <summary>Converts double to bytes(More information in readme.txt).</summary>
+
+        /// <summary>Converts double to bytes(More information in readme.txt).</summary>
         /// <param name="number">value</param>
         /// <returns>
         ///    byte array

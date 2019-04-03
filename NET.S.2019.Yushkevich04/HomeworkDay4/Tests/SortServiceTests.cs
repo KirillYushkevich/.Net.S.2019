@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
+using System;
 
 namespace HomeworkDay4.Tests
 {
@@ -363,6 +364,23 @@ namespace HomeworkDay4.Tests
         {
             var result = JaggedArraySortService.OrderByMinDescending(actual);
             Assert.AreEqual(result, expected);
+        }
+
+        [Test]
+        public void SortServiceExceptionTests()
+        {
+            Assert.Throws<ArgumentNullException>(() => JaggedArraySortService.OrderByMax(null));
+            Assert.Throws<ArgumentNullException>(() => JaggedArraySortService.OrderByMin(null));
+            Assert.Throws<ArgumentNullException>(() => JaggedArraySortService.OrderBySum(null));
+            Assert.Throws<ArgumentNullException>(() => JaggedArraySortService.OrderByMaxDescending(null));
+            Assert.Throws<ArgumentNullException>(() => JaggedArraySortService.OrderByMinDescending(null));
+            Assert.Throws<ArgumentNullException>(() => JaggedArraySortService.OrderBySumDescending(null));
+            Assert.Throws<ArgumentException>(() => JaggedArraySortService.OrderByMax(new int[0][]));
+            Assert.Throws<ArgumentException>(() => JaggedArraySortService.OrderByMin(new int[0][]));
+            Assert.Throws<ArgumentException>(() => JaggedArraySortService.OrderBySum(new int[0][]));
+            Assert.Throws<ArgumentException>(() => JaggedArraySortService.OrderByMaxDescending(new int[0][]));
+            Assert.Throws<ArgumentException>(() => JaggedArraySortService.OrderByMinDescending(new int[0][]));
+            Assert.Throws<ArgumentException>(() => JaggedArraySortService.OrderBySumDescending(new int[0][]));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -8,43 +9,47 @@ namespace HomeworkDay4
     {
         public Polynomial(List<double> coefArray)
         {
-            Coefficents = coefArray;
+            _coefficents = coefArray;
         }
 
         public Polynomial(int size)
         {
-            Coefficents = new List<double>(size);
+            _coefficents = new List<double>(size);
             for (int i = 0; i < size; i++)
             {
-                Coefficents.Add(0);
+                _coefficents.Add(0);
             }
         }
 
-        public List<double> Coefficents { get; set; }
+        private List<double> _coefficents; 
 
         public double this[int i]
         {
             get
             {
-                return Coefficents[i];
+                return _coefficents[i];
             }
 
             set
             {
-                Coefficents[i] = value;
+                if(value>=double.MaxValue || value<=double.MinValue)
+                {
+                    throw new ArgumentNullException();
+                }
+                _coefficents[i] = value;
             }
         }
 
         public static bool operator ==(Polynomial pol1, Polynomial pol2)
         {
-            if (pol1.Coefficents.Count != pol2.Coefficents.Count)
+            if (pol1._coefficents.Count != pol2._coefficents.Count)
             {
                 return false;
             }
 
-            for (int i = 0; i < pol1.Coefficents.Count - 1; i++)
+            for (int i = 0; i < pol1._coefficents.Count - 1; i++)
             {
-                if (pol1.Coefficents[i] != pol2.Coefficents[i])
+                if (pol1._coefficents[i] != pol2._coefficents[i])
                 {
                     return false;
                 }
@@ -55,14 +60,14 @@ namespace HomeworkDay4
 
         public static bool operator !=(Polynomial pol1, Polynomial pol2)
         {
-            if (pol1.Coefficents.Count != pol2.Coefficents.Count)
+            if (pol1._coefficents.Count != pol2._coefficents.Count)
             {
                 return true;
             }
 
-            for (int i = 0; i < pol1.Coefficents.Count - 1; i++)
+            for (int i = 0; i < pol1._coefficents.Count - 1; i++)
             {
-                if (pol1.Coefficents[i] != pol2.Coefficents[i])
+                if (pol1._coefficents[i] != pol2._coefficents[i])
                 {
                     return true;
                 }
@@ -74,20 +79,20 @@ namespace HomeworkDay4
         public static Polynomial operator +(Polynomial pol1, Polynomial pol2)
         {
             int maxSize;
-            if (pol1.Coefficents.Count > pol2.Coefficents.Count)
+            if (pol1._coefficents.Count > pol2._coefficents.Count)
             {
-                maxSize = pol1.Coefficents.Count;
+                maxSize = pol1._coefficents.Count;
             }
             else
             {
-                maxSize = pol2.Coefficents.Count;
+                maxSize = pol2._coefficents.Count;
             }
 
             Polynomial result = new Polynomial(maxSize);
 
             for (int i = 0; i < maxSize; i++)
             {
-                result.Coefficents[i] = pol1[i] + pol2[i];
+                result._coefficents[i] = pol1[i] + pol2[i];
             }
 
             return result;
@@ -96,20 +101,20 @@ namespace HomeworkDay4
         public static Polynomial operator -(Polynomial pol1, Polynomial pol2)
         {
             int maxSize;
-            if (pol1.Coefficents.Count > pol2.Coefficents.Count)
+            if (pol1._coefficents.Count > pol2._coefficents.Count)
             {
-                maxSize = pol1.Coefficents.Count;
+                maxSize = pol1._coefficents.Count;
             }
             else
             {
-                maxSize = pol2.Coefficents.Count;
+                maxSize = pol2._coefficents.Count;
             }
 
             Polynomial result = new Polynomial(maxSize);
 
             for (int i = 0; i < maxSize; i++)
             {
-                result.Coefficents[i] = pol1[i] - pol2[i];
+                result._coefficents[i] = pol1[i] - pol2[i];
             }
 
             return result;
@@ -117,10 +122,10 @@ namespace HomeworkDay4
 
         public static Polynomial operator *(Polynomial pol1, int number)
         {
-            Polynomial result = new Polynomial(pol1.Coefficents.Count);
-            for (int i = 0; i < pol1.Coefficents.Count; i++)
+            Polynomial result = new Polynomial(pol1._coefficents.Count);
+            for (int i = 0; i < pol1._coefficents.Count; i++)
             {
-                result.Coefficents[i] = pol1[i] * number;
+                result._coefficents[i] = pol1[i] * number;
             }
 
             return result;
@@ -128,12 +133,12 @@ namespace HomeworkDay4
 
         public static Polynomial operator *(Polynomial pol1, Polynomial pol2)
         {
-            Polynomial result = new Polynomial(pol1.Coefficents.Count + pol2.Coefficents.Count - 1);
-            result.Coefficents.Select(x => 0);
+            Polynomial result = new Polynomial(pol1._coefficents.Count + pol2._coefficents.Count - 1);
+            result._coefficents.Select(x => 0);
 
-            for (int i = 0; i < pol1.Coefficents.Count; i++)
+            for (int i = 0; i < pol1._coefficents.Count; i++)
             {
-                for (int j = 0; j < pol2.Coefficents.Count; j++)
+                for (int j = 0; j < pol2._coefficents.Count; j++)
                 {
                     result[i + j] += pol1[i] * pol2[j];
                 }   
@@ -156,13 +161,13 @@ namespace HomeworkDay4
 
         public override int GetHashCode()
         {
-            return Coefficents.Count;
+            return _coefficents.Count;
         }
 
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < Coefficents.Count; i++)
+            for (int i = 0; i < _coefficents.Count; i++)
             {
                 if (this[i] == 0 && i != 0)
                 {
