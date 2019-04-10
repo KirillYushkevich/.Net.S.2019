@@ -28,19 +28,6 @@ namespace ELibrary.Data.Models
 
         public int Price { get; set; }
 
-        public string ToRawString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(ISBN);
-            sb.Append(Author);
-            sb.Append(Title);
-            sb.Append(Publisher);
-            sb.Append(PublishYear);
-            sb.Append(PageAmount);
-            sb.Append(Price);
-            return sb.ToString();
-        }
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

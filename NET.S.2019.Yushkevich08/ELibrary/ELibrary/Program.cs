@@ -16,6 +16,7 @@ namespace ELibrary
             Book b5 = new Book("5", "Bell", "lol", "Lino", 1971, 612, 254);
 
             BookListService service = new BookListService();
+            service.LoadBooks();
             service.AddBook(b1);
             service.AddBook(b2);
             service.AddBook(b3);
@@ -39,6 +40,7 @@ namespace ELibrary
                 Console.WriteLine(ba.ToString());
             }
             Console.WriteLine(service.FindBookByTag("PublishYear","1973"));
+            service.SaveToFile();
             Console.ReadKey();
         }
     }

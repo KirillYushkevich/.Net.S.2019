@@ -9,10 +9,16 @@ namespace Bank.Data.Presenters
         public List<Account> AccountList = new List<Account>();
 
         private const string StoragePath = "AccountStorage.bin";
+        private List<string> _storages = new List<string>();
+        
 
         public AccountService()
         {
-            AccountList = StorageService.LoadFromFile(StoragePath);
+            _storages.Add(StoragePath);
+            foreach(string path in _storages)
+            {
+                AccountList.AddRange(StorageService.LoadFromFile(path));
+            }
         }
 
         ~AccountService()
@@ -26,7 +32,7 @@ namespace Bank.Data.Presenters
         {
             if (AccountList.Contains(newAccount))
             {
-                throw new Exception("This Account already in storage");
+                throw new Exception("This Account already in exist");
             }
 
             AccountList.Add(newAccount);
@@ -38,7 +44,7 @@ namespace Bank.Data.Presenters
         {
             if (!AccountList.Contains(newAccount))
             {
-                throw new Exception("There is no such Account in storage");
+                throw new Exception("There is no such Account");
             }
 
             AccountList.Remove(newAccount);
