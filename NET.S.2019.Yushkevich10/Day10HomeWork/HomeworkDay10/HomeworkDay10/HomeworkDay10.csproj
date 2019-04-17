@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="C:\Users\bptop\onedrive\документы\visual studio 2017\Projects\Day!0HomeWork\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('C:\Users\bptop\onedrive\документы\visual studio 2017\Projects\Day!0HomeWork\packages\NUnit.3.11.0\build\NUnit.props')" />
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF5F6D86-B047-40DF-8089-A8F8D0111546}</ProjectGuid>
+    <ProjectGuid>{EF4FEE65-BD8C-488E-A672-CBECBBD2A260}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Day_0HomeWork</RootNamespace>
-    <AssemblyName>Day!0HomeWork</AssemblyName>
+    <RootNamespace>HomeworkDay10</RootNamespace>
+    <AssemblyName>HomeworkDay10</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -48,10 +48,10 @@
   <ItemGroup>
     <Compile Include="Book\Book.cs" />
     <Compile Include="Book\BookFormater.cs" />
-    <Compile Include="Gcd\GCDService.cs" />
-    <Compile Include="Gcd\Result.cs" />
-    <Compile Include="JaggedArraySort\InterfaceSortService.cs" />
-    <Compile Include="JaggedArraySort\JaggedArraySortService.cs" />
+    <Compile Include="GCD\GCDService.cs" />
+    <Compile Include="GCD\Result.cs" />
+    <Compile Include="JaggedArray\InterfaceSortService.cs" />
+    <Compile Include="JaggedArray\JaggedArraySortService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BookFormatterTests.cs" />
     <Compile Include="Tests\SortServiceTests.cs" />
@@ -67,6 +67,6 @@
     <PropertyGroup>
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('C:\Users\bptop\onedrive\документы\visual studio 2017\Projects\Day!0HomeWork\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', 'C:\Users\bptop\onedrive\документы\visual studio 2017\Projects\Day!0HomeWork\packages\NUnit.3.11.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.11.0\build\NUnit.props'))" />
   </Target>
 </Project>

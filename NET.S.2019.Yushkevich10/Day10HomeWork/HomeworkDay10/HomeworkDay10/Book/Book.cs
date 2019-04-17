@@ -78,6 +78,10 @@ namespace HomeworkDay10
             return false;
         }
 
+        ///<summary>Get string representation of book using given format</summary>
+        /// <param name="format">given format</param>
+        /// <param name="formatProvider">provider </param>
+        /// <returns>string</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             StringBuilder sb = new StringBuilder();

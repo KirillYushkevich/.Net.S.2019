@@ -6,6 +6,11 @@
 
     public class BookFormater : IFormatProvider, ICustomFormatter
     {
+        ///<summary>Format given object with given format</summary>
+        /// <param name="format">given format</param>
+        /// <param name="arg">object to format</param>
+        /// <param name="formatProvider">provider </param>
+        /// <returns>string</returns>
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
             if (arg is Book)
@@ -14,14 +19,11 @@
                 switch (format)
                 {
                     case "T":
-                        sb.Append("Title:" + (arg as Book).Title + "\n");
-                        break;
+                        return ("Title:" + (arg as Book).Title + "\n");
                     case "A":
-                        sb.Append("Author:" + (arg as Book).Author + "\n");
-                        break;
+                        return("Author:" + (arg as Book).Author + "\n");
                     case "PB":
-                        sb.Append("Publisher:" + (arg as Book).Publisher + "\n");
-                        break;
+                       return("Publisher:" + (arg as Book).Publisher + "\n");
                     default:
                         sb.Append("Title:" + (arg as Book).Title + "\n");
                         sb.Append("Current Price" + (arg as Book).Price + "\n");
