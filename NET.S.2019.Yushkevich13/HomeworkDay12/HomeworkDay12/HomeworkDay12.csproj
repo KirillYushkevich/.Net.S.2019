@@ -51,9 +51,14 @@
     <Compile Include="BinarySearchTree\Node.cs" />
     <Compile Include="Matrix\DiagMatrix.cs" />
     <Compile Include="Matrix\Matrix.cs" />
+    <Compile Include="Matrix\MatrixCalculator.cs" />
     <Compile Include="Matrix\SymMatrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queue\GenericQueue.cs" />
+    <Compile Include="Tests\Book.cs" />
+    <Compile Include="Tests\GenericBTSTests.cs" />
+    <Compile Include="Tests\MatrixTests.cs" />
+    <Compile Include="Tests\QueueTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

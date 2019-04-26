@@ -38,7 +38,12 @@ namespace HomeworkDay12.BinarySearchTree
 
         public Node<T> Root { get; private set; }
 
-        public Node<T> Insert(Node<T> root, T item)
+        public void Add(T item)
+        {
+            Insert(Root, item);
+        }
+
+        private Node<T> Insert(Node<T> root, T item)
         {
             _count++;
             if (Root is null)
@@ -97,7 +102,7 @@ namespace HomeworkDay12.BinarySearchTree
             PreOrderTraversing(root.right);
         }
 
-        public IEnumerable<Node<T>> Traversing(WalkOrder order)
+        public IEnumerable<T> Traversing(WalkOrder order)
         {
             _orderList = new List<Node<T>>();
             Action<Node<T>> traversing;
@@ -120,12 +125,12 @@ namespace HomeworkDay12.BinarySearchTree
             return Walk(traversing);
         }
 
-        public IEnumerable<Node<T>> Walk(Action<Node<T>> traversing)
+        public IEnumerable<T> Walk(Action<Node<T>> traversing)
         {
             traversing(Root);
             for (int i = 0; i < _orderList.Count; i++)
             {
-                yield return _orderList[i];
+                yield return _orderList[i].Value;
             }
         }
     }
