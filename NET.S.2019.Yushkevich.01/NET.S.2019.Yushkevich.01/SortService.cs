@@ -4,56 +4,88 @@ namespace NET.S._2019.Yushkevich._01
 {
     public static class SortService
     {
-        // <summary> Sort array using Qsort(https://en.wikipedia.org/wiki/Quicksort).</summary>
-        /// <param name="array">Source int array.</param>
-        /// <param name="firstEllement">First ellement of array.</param>
+        /// <summary> Sort array using Qsort(https://en.wikipedia.org/wiki/Quicksort).</summary>
         /// <param name="array">Last ellement of array.</param>
         /// <returns>
         ///   Sorted array.
         /// </returns>
-        public static void QSort(this int[] array, int firstEllement, int lastEllement)
+        public static void QSort(this int[] array)
         {
-            if (array == null) throw new ArgumentNullException();
-            if (array.Length == 0) throw new ArgumentException();
-
-            int lowerBound = firstEllement, higherBound = lastEllement, pivot = array[(lastEllement + firstEllement) / 2];
-            while (lowerBound <= higherBound)
+            if (array == null)
             {
-                while (array[lowerBound] < pivot) lowerBound++;
-                while (array[higherBound] > pivot) higherBound--;
-                if (lowerBound <= higherBound)
+                throw new ArgumentNullException();
+            }
+
+            if (array.Length == 0)
+            {
+                throw new ArgumentException();
+            }
+
+            algo(0, array.Length - 1);
+            void algo(int firstEllement, int lastEllement)
+            {
+                int lowerBound = firstEllement, higherBound = lastEllement, pivot = array[(lastEllement + firstEllement) / 2];
+                while (lowerBound <= higherBound)
                 {
-                    var temp = array[lowerBound];
-                    array[lowerBound] = array[higherBound];
-                    array[higherBound] = temp;
-                    lowerBound++;
-                    higherBound--;
+                    while (array[lowerBound] < pivot)
+                    {
+                        lowerBound++;
+                    }
+
+                    while (array[higherBound] > pivot)
+                    {
+                        higherBound--;
+                    }
+
+                    if (lowerBound <= higherBound)
+                    {
+                        var temp = array[lowerBound];
+                        array[lowerBound] = array[higherBound];
+                        array[higherBound] = temp;
+                        lowerBound++;
+                        higherBound--;
+                    }
+                }
+
+                if (firstEllement < higherBound)
+                {
+                    algo(firstEllement, higherBound);
+                }
+
+                if (lastEllement > lowerBound)
+                {
+                    algo(lowerBound, lastEllement);
                 }
             }
-            if (firstEllement < higherBound) QSort(array, firstEllement, higherBound);
-            if (lastEllement > lowerBound) QSort(array, lowerBound, lastEllement);
-
         }
 
-        // <summary> Sort array using Merge Sort(https://en.wikipedia.org/wiki/Merge_sort).</summary>
+        /// <summary> Sort array using Merge Sort(https://en.wikipedia.org/wiki/Merge_sort).</summary>
         /// <param name="array">Source int array.</param>
-        /// <param name="firstEllement">First ellement of array.</param>
-        /// <param name="lastEllement">Last ellement of array.</param>
         /// <returns>
         ///   Sorted array.
         /// </returns>
-        public static void MergeSort(this int[] array, int firstEllement, int lastEllement)
+        public static void MergeSort(this int[] array)
         {
-            if (array == null) throw new ArgumentNullException();
-            if (array.Length == 0) throw new ArgumentException();
-
-
-            if (firstEllement < lastEllement)
+            if (array == null)
             {
-                int mid = (firstEllement + lastEllement) / 2;
-                MergeSort(array, firstEllement, mid);
-                MergeSort(array, mid + 1, lastEllement);
-                Merge(array, firstEllement, mid, lastEllement);
+                throw new ArgumentNullException();
+            }
+
+            if (array.Length == 0)
+            {
+                throw new ArgumentException();
+            }
+
+            algo(0, array.Length - 1);
+            void algo(int firstEllement, int lastEllement)
+            {
+                if (firstEllement < lastEllement)
+                {
+                    int mid = (firstEllement + lastEllement) / 2;
+                    algo(firstEllement, mid);
+                    algo(mid + 1, lastEllement);
+                    Merge(array, firstEllement, mid, lastEllement);
+                }
             }
         }
 
@@ -63,8 +95,15 @@ namespace NET.S._2019.Yushkevich._01
             int[] leftSub = new int[leftSubSize];
             int[] rightSub = new int[rightSubSize];
 
-            for (int i = 0; i < leftSubSize; i++) leftSub[i] = array[low + i];
-            for (int j = 0; j < rightSubSize; j++) rightSub[j] = array[mid + 1 + j];
+            for (int i = 0; i < leftSubSize; i++)
+            {
+                leftSub[i] = array[low + i];
+            }
+
+            for (int j = 0; j < rightSubSize; j++)
+            {
+                rightSub[j] = array[mid + 1 + j];
+            }
 
             int leftIndex = 0, rightIndex = 0;
             int mergeIndex = low;
@@ -80,6 +119,7 @@ namespace NET.S._2019.Yushkevich._01
                     array[mergeIndex] = rightSub[rightIndex];
                     rightIndex++;
                 }
+
                 mergeIndex++;
             }
             while (leftIndex < leftSubSize)
@@ -88,6 +128,7 @@ namespace NET.S._2019.Yushkevich._01
                 leftIndex++;
                 mergeIndex++;
             }
+
             while (rightIndex < rightSubSize)
             {
                 array[mergeIndex] = rightSub[rightIndex];

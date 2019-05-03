@@ -9,7 +9,7 @@ namespace ELibrary.Data.Models
     public sealed class Book : IEquatable<Book>
     {
         public readonly string Author;
-        public readonly string ISBN;
+        private string _ISBN;
         public readonly string Title;
         public readonly string Publisher;
         public readonly int PublishYear;
@@ -27,6 +27,21 @@ namespace ELibrary.Data.Models
         }
 
         public int Price { get; set; }
+        
+        public string ISBN
+        {
+            get
+            {
+                return _ISBN;
+            }
+            set
+            {
+                if(value.Length>10)
+                {
+                    throw new ArgumentException("Wrong ISBN");
+                }
+            }
+        }
 
         public override string ToString()
         {

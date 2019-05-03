@@ -20,36 +20,36 @@ namespace NET.S._2019.Yushkevich._01
         [TestCaseSource(nameof(DataCases))]
         public void QSortTests(int[] actual, int[] expected)
         {
-            actual.QSort(0, actual.Length - 1);
+            actual.QSort();
 
             Assert.AreEqual(expected, actual);
         }
         [TestCaseSource(nameof(DataCases))]
         public void MergeSortTests(int[] actual, int[] expected)
         {
-            actual.MergeSort(0, actual.Length - 1);
+            actual.MergeSort();
 
             Assert.AreEqual(expected, actual);
         }
         [Test]
         public void NullArrayQsorTest()
         {
-            Assert.Throws<ArgumentNullException>(() => SortService.QSort(null, 0, 0));
+            Assert.Throws<ArgumentNullException>(() => SortService.QSort(null));
         }
         [Test]
         public void NullArrayMergeSortTest()
         {
-            Assert.Throws<ArgumentNullException>(() => SortService.MergeSort(null, 0, 0));
+            Assert.Throws<ArgumentNullException>(() => SortService.MergeSort(null));
         }
         [Test]
         public void EmptyArrayQsorTest()
         {
-            Assert.Throws<ArgumentException>(() => SortService.QSort(new int[0], 0, 0));
+            Assert.Throws<ArgumentException>(() => SortService.QSort(new int[0]));
         }
         [Test]
         public void EmptyArrayMergeSortTest()
         {
-            Assert.Throws<ArgumentException>(() => SortService.MergeSort(new int[0], 0, 0));
+            Assert.Throws<ArgumentException>(() => SortService.MergeSort(new int[0]));
         }
     }
 }
