@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Interface.Interfaces
+namespace DAL.Interface
 {
-    public interface IBonusesCalculator
+    public enum AccountType
     {
-        void UpdateBonuses(IAccount account,int sum);
+        Base,
+        Silver,
+        Gold
     }
 }

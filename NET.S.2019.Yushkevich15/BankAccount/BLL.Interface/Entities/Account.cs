@@ -9,21 +9,35 @@ namespace BLL.Interface.Entities
 {
     public class Account : IAccount
     {
-        public int AccountNumber { get; set; }        
+        public int AccountNumber { get; set; }
+        private int _bonuses;
         public int Bonuses
         {
-            get => Bonuses;
+            get => _bonuses;
             set
             {
-                if(value<=0)
+                if(value<0)
                 {
-                    Bonuses = 0;
+                    _bonuses = 0;
                 }
+                _bonuses = value;
             }
         }
         public AccountType Type { get; set; }
         public string Owner { get ; set ; }
-        public int Balance { get ; set ; }
+        private int _balance;
+        public int Balance
+        {
+            get => _balance;
+            set
+            {
+                if (value<0)
+                {
+                    throw new Exception();
+                }
+                _balance = value;
+            }
+        }
 
         public Account(int id,string owner,AccountType type)
         {

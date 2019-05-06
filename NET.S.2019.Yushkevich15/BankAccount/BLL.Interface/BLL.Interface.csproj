@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AccountNumberCreator.cs" />
     <Compile Include="Entities\AccountOwner.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\BonusesCalculator.cs" />
