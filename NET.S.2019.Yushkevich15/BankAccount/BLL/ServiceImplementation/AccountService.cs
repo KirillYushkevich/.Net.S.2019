@@ -1,10 +1,10 @@
-﻿using BLL.Interface.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.Interface.Entities;
+using BLL.Interface.Interfaces;
 using DAL.Interface.Interfaces;
 
 namespace BLL.ServiceImplementation
@@ -15,7 +15,7 @@ namespace BLL.ServiceImplementation
         private IBonusesCalculator _calculator;
         private IRepository _repository;
 
-        public AccountService(IBonusesCalculator calculator,IRepository rep)
+        public AccountService(IBonusesCalculator calculator, IRepository rep)
         {
             _accounts = new List<IAccount>();
             _calculator = calculator;
@@ -61,31 +61,30 @@ namespace BLL.ServiceImplementation
                 _accounts.CopyTo(temp);
                 return temp;
             }
-           
         }
 
         public void OpenAccount(string owner, AccountType type, IAccountNumberCreateService creator)
         {
-            _accounts.Add(new Account(creator.GenerateNewAccountNumber() ,owner,type));
+            _accounts.Add(new Account(creator.GenerateNewAccountNumber(), owner, type));
         }
 
         public void WithdrawAccount(int accountNumber, int summ)
         {
             int temp = FindAccount(accountNumber);
-            if(temp!=-1)
+            if (temp != -1)
             {
                 _accounts[temp].Balance -= summ;
-                _calculator.UpdateBonuses(_accounts[temp],summ);
+                _calculator.UpdateBonuses(_accounts[temp], summ);
             }
             else
             {
                 throw new Exception("Account dont exist");
             }
         }
-        
+
         public void SaveToDB()
         {
-            _repository.SaveToFile(_accounts.Select(x=> Mappers.AccountMapper.ToAccountDTO(x)));
+            _repository.SaveToFile(_accounts.Select(x => Mappers.AccountMapper.ToAccountDTO(x)));
         }
 
         public void LoadFormDB()
@@ -95,9 +94,9 @@ namespace BLL.ServiceImplementation
 
         private int FindAccount(int number)
         {
-            for(int i=0;i<=_accounts.Capacity-1;i++)
+            for (int i = 0; i <= _accounts.Capacity - 1; i++)
             {
-                if(_accounts[i].AccountNumber==number)
+                if (_accounts[i].AccountNumber == number)
                 {
                     return i;
                 }
@@ -105,6 +104,5 @@ namespace BLL.ServiceImplementation
 
             return -1;
         }
-
     }
 }

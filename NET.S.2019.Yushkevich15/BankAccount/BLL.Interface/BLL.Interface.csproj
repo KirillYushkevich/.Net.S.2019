@@ -49,7 +49,9 @@
     <Compile Include="Interfaces\IAccountNumberCreateService.cs" />
     <Compile Include="Interfaces\IAccountOwner.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
-    <Compile Include="Interfaces\IBonusesCalculator.cs" />
+    <Compile Include="Interfaces\IBonusesCalculator.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

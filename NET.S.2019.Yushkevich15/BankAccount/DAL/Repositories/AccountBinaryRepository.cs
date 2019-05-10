@@ -1,18 +1,19 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface.Interfaces;
 using DAL.Interface.DTO;
-using System.IO;
 using DAL.Interface;
 
 namespace DAL.Repositories
 {
-    public class AccountBinaryRepository:IRepository
+    public class AccountBinaryRepository : IRepository
     {
         private string _path;
+
         public AccountBinaryRepository(string path)
         {
             path = _path;
@@ -32,7 +33,7 @@ namespace DAL.Repositories
                     item.Bonuses = reader.ReadInt32();
                     item.Owner = reader.ReadString();
                     AccountType temp;
-                    Enum.TryParse(reader.ReadString(),true,out temp);
+                    Enum.TryParse(reader.ReadString(), true, out temp);
                     item.Type = temp;
                     list.Add(item);
                 }

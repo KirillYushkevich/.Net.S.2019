@@ -9,11 +9,12 @@ namespace BLL.Interface.Entities
 {
     public class AccountNumberCreator : IAccountNumberCreateService
     {
-        public int Last;
+        public int Last { get; set; }
+
         public int GenerateNewAccountNumber()
         {
             Random random = new Random();
-            Last= random.Next(100000000);
+            Last = random.Next(100000000);
             return Last;
         }
     }

@@ -1,13 +1,13 @@
-﻿using BLL.Interface.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Interface.Interfaces;
 
 namespace BLL.Interface.Entities
 {
-    class AccountOwner : IAccountOwner
+    public class AccountOwner : IAccountOwner
     {
         public AccountOwner(string name, string surname)
         {
@@ -16,6 +16,7 @@ namespace BLL.Interface.Entities
         }
 
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
     }
 }

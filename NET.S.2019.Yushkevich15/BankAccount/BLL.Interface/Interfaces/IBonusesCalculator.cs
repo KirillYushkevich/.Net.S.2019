@@ -8,6 +8,6 @@ namespace BLL.Interface.Interfaces
 {
     public interface IBonusesCalculator
     {
-        void UpdateBonuses(IAccount account,int sum);
+        void UpdateBonuses(IAccount account, int sum);
     }
 }

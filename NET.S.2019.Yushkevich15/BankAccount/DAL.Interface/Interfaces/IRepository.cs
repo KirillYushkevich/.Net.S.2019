@@ -10,6 +10,7 @@ namespace DAL.Interface.Interfaces
     public interface IRepository
     {
         IEnumerable<AccountDTO> LoadFromFile();
+
         void SaveToFile(IEnumerable<AccountDTO> list);
     }
 }

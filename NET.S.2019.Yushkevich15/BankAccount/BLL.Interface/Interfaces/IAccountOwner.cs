@@ -9,6 +9,7 @@ namespace BLL.Interface.Interfaces
     internal interface IAccountOwner
     {
         string FirstName { get; set; }
+
         string LastName { get; set; }
     }
 }
